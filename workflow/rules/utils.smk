@@ -58,6 +58,10 @@ def get_abc_config(config):
 		abc_config["ref"]["regions_blocklist"] = config["regions_blocklist"]
 	if "macs2_genomesize" in config:
 		abc_config["params_macs"]["genome_size"] = config["macs2_genomesize"]
+	if "abc_use_qnorm" in config:
+		abc_config["params_neighborhoods"]["use_qnorm"] = config["abc_use_qnorm"]
+	elif config.get("linking_mode", "sce2g") == "arc":
+		abc_config["params_neighborhoods"]["use_qnorm"] = False
 	for attr in [
 		"linking_mode",
 		"rna_gene_id_column",
