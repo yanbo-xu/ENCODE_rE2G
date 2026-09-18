@@ -58,6 +58,15 @@ def get_abc_config(config):
 		abc_config["ref"]["regions_blocklist"] = config["regions_blocklist"]
 	if "macs2_genomesize" in config:
 		abc_config["params_macs"]["genome_size"] = config["macs2_genomesize"]
+	for attr in [
+		"linking_mode",
+		"rna_gene_id_column",
+		"abc_use_qnorm",
+		"external_peak_ignore_summits",
+		"external_peak_extend",
+	]:
+		if attr in config:
+			abc_config[attr] = config[attr]
 	return abc_config
 
 def make_accessibility_file_df(biosample_df, biosample_activities):
